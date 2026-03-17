@@ -3,6 +3,11 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
     {
+        name: {
+            type: String,
+            required: true,
+            trim: true
+        },
         email: {
             type: String,
             required: true,
@@ -10,22 +15,22 @@ const userSchema = new Schema(
             trim: true,
             lowercase: true
         },
-        passwordHash: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true,
-            trim: true
-        },
         mobile: {
             type: String,
             required: true
         },
+        password: {
+            type: String,
+            required: true
+        },
+        otp: String,
+        otpExpiry: Date,
         isVerified: {
             type: Boolean,
             default: false
+        },
+        accessToken: {
+            type: String
         }
     },
     {
