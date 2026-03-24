@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js"
 import authRouter from "./modules/user/user.route.js";
+import taskRouter from "./modules/task/task.route.js";
 
 dotenv.config();
 connectDB();
@@ -10,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/task", taskRouter);
 
 const PORT = process.env.PORT || 5000;
 

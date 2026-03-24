@@ -1,16 +1,10 @@
-import mongoose from 'mongoose';
-const { Schema } = mongoose;
+import mongoose from "mongoose";
 
-const taskSchema = new Schema(
+const taskSchema = new mongoose.Schema(
     {
-        id: {
-            type: String,
-            required: true,
-            unique: true
-        },
-
-        userId: {
-            type: String, // If referencing User._id, better use Schema.Types.ObjectId
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true
         },
 
@@ -26,14 +20,14 @@ const taskSchema = new Schema(
 
         status: {
             type: String,
-            enum: ['pending', 'completed'],
-            default: 'pending'
+            enum: ["pending", "completed"],
+            default: "pending"
         },
 
         priority: {
             type: String,
-            enum: ['low', 'medium', 'high'],
-            default: 'medium'
+            enum: ["low", "medium", "high"],
+            default: "medium"
         },
 
         dueDate: {
@@ -41,18 +35,23 @@ const taskSchema = new Schema(
         },
 
         completedAt: {
-            type: Date
+            type: Date,
+            default: null
         },
 
-        forwardedFrom: {
-            type: Date
-        }
+        forwardHistory: [
+            {
+                from: Date,
+                to: Date
+            }
+        ]
     },
-    {
-        timestamps: true // adds createdAt & updatedAt
-    }
+    { timestamps: true }
 );
 
-const Task = mongoose.model('Task', taskSchema);
+// index for performance
+taskSchema.index({ user: 1, dueDate: 1 });
+
+const Task = mongoose.model("Task", taskSchema);
 
 export default Task;
