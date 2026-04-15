@@ -1,0 +1,79 @@
+/* src/pages/Login/Login.css */
+
+/* Reuse most styles from register.css, add login-specific ones */
+
+/* Different blob color for login page */
+.login-blob {
+  background: radial-gradient(
+    circle, 
+    rgba(139, 92, 246, 0.15) 0%,  /* Purple tint */
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+/* Login card can be slightly smaller */
+.login-card {
+  max-width: 380px;
+}
+
+/* Label row for password field */
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.label-row label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.forgot-link {
+  font-size: 0.85rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 20px 0;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: auto;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.checkbox-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-card {
+    max-width: 100%;
+  }
+  
+  .label-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
